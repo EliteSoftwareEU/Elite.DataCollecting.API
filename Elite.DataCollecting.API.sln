@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elite.DataCollecting.API", "Elite.DataCollecting.API.csproj", "{F1761B60-CDC9-438A-AB55-20E58A94266B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1761B60-CDC9-438A-AB55-20E58A94266B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1761B60-CDC9-438A-AB55-20E58A94266B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1761B60-CDC9-438A-AB55-20E58A94266B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1761B60-CDC9-438A-AB55-20E58A94266B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
