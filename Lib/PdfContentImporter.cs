@@ -47,11 +47,12 @@ namespace Elite.DataCollecting.API.Lib
                                                           new object[] { stream, fullPath, _context });
 
                     string fileContent = _importer.ReadFile();
-                    var pipeline = BuildPipeline(fileContent);
-                    pipeline.Run();
-                    var sentenceProc = (SentenceTextProcessor)pipeline.Processors
-                                                                       .FirstOrDefault(p => p.GetType().Name == "SentenceTextProcessor");
+                    var pipeline = NLPTextProcessingPipeline.Build(_hostingEnv, fileContent);
 
+                    pipeline.Run();
+
+                    var sentenceProc = (SentenceTextProcessor)
+                                        pipeline.GetPipelineByName("SentenceTextProcessor");
 
                     var documentData = new DocumentData()
                     {
@@ -86,14 +87,6 @@ namespace Elite.DataCollecting.API.Lib
         private string Extension()
         {
             return _importFiles.Replace("*.", String.Empty);
-        }
-
-        private NLPTextProcessingPipeline BuildPipeline(string inputText)
-        {
-            var items = new List<string>();
-            items.Add("NormalizingTextProcessor");
-            items.Add("SentenceTextProcessor");
-            return new NLPTextProcessingPipeline(inputText, _hostingEnv, items);
         }
     }
 }

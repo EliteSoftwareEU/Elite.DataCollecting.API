@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using OpenNLP.Tools.SentenceDetect;
 namespace Elite.DataCollecting.API.Lib.Processors
@@ -17,14 +18,21 @@ namespace Elite.DataCollecting.API.Lib.Processors
         {
             _inputText = input;
             _modelPath = Path.Combine(hostingEnvironment.ContentRootPath, ENGLISH_SD_MODEL);
+            Sentences = new List<string>();
         }
 
         public override void ProcessText()
         {
             var sentenceDetector = new EnglishMaximumEntropySentenceDetector(_modelPath);
-            Sentences = sentenceDetector.SentenceDetect(_inputText).Select(s => s.Trim().Replace(".", "")
-                                                                                        .Replace(@"\s+", " "))
-                                        .ToList();
+            var detectedSentences = sentenceDetector.SentenceDetect(_inputText).ToList();
+            foreach(string sentence in detectedSentences) 
+            {
+                string sentenceClean = sentence.Replace(".", "")
+                                               .Replace(@"\s+", " ")
+                                               .Trim();
+                sentenceClean = Regex.Replace(sentenceClean, @"\s+", " ");
+                Sentences.Add(sentenceClean.Trim());
+            }
             OutputText = string.Join("", Sentences);
         }
     }

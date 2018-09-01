@@ -11,8 +11,6 @@ namespace Elite.DataCollecting.API.Lib
         protected FileStream _stream;
         protected AppDbContext _context;
         protected string _fullPath { get; set; }
-        public List<dynamic> Imported { get; set; }
-
         public abstract string ReadFile();
     }
 }

@@ -20,7 +20,6 @@ namespace Elite.DataCollecting.API.Lib.Importers
         {
             _stream = stream;
             _fullPath = fullPath;
-            Imported = new List<dynamic>();
             _context = context;
         }
 

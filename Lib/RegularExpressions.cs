@@ -12,7 +12,7 @@ namespace Elite.DataCollecting.API.Lib
      
         public static Regex MoreThanOneSpace()
         {
-            return new Regex(" +");
+            return new Regex(@"\s+");
         }
     }
 }
